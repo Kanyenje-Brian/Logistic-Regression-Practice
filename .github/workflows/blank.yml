@@ -2,7 +2,7 @@ name: Sync Kaggle Notebooks
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # Runs weekly on Monday at midnight
+    - cron: '0 0 * * 1'  # Runs weekly on Monday at midnight UTC
   workflow_dispatch:      # Allows manual trigger from GitHub UI
 
 jobs:
@@ -35,5 +35,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.em
+        git config --local user.name 'github-actions[bot]'
+        git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git diff --quiet || (git commit -m "Update Kaggle notebooks" && git push)
