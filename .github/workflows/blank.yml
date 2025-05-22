@@ -1,6 +1,14 @@
+name: Sync Kaggle Notebooks
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Runs weekly on Monday at midnight
+  workflow_dispatch:      # Allows manual trigger from GitHub UI
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -24,3 +32,8 @@ jobs:
 
     - name: Download Kaggle notebook
       run: kaggle kernels pull arthur254/logistic-regression-practice -p .
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.em
