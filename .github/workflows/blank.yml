@@ -2,8 +2,8 @@ name: Sync Kaggle Notebooks
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # Runs weekly on Monday at midnight UTC
-  workflow_dispatch:      # Allows manual trigger from GitHub UI
+    - cron: '0 0 * * 1' # Runs weekly
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -21,21 +21,16 @@ jobs:
     - name: Install kaggle
       run: pip install kaggle
 
-    - name: Create kaggle.json
-      run: |
-        mkdir -p ~/.kaggle
-        echo "{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_KEY\"}" > ~/.kaggle/kaggle.json
-        chmod 600 ~/.kaggle/kaggle.json
+    - name: Download Kaggle notebook
       env:
         KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
         KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-
-    - name: Download Kaggle notebook
       run: kaggle kernels pull arthur254/logistic-regression-practice -p .
 
     - name: Commit and push changes
       run: |
-        git config --local user.name 'github-actions[bot]'
-        git config --local user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .
-        git diff --quiet || (git commit -m "Update Kaggle notebooks" && git push)
+        git commit -m "Update Kaggle notebooks"
+        git push
