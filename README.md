@@ -51,10 +51,6 @@ This project uses the [Spaceship Titanic dataset](https://www.kaggle.com/competi
 
 ---
 
-## 🚀 Getting Started
-
-To run this notebook:
-1. Clone the repo
-2. Install required packages:
-   ```bash
-   pip install -r requirements.txt
+# 🧠 Author
+Kanyenje Brian
+Data Analyst & Data Science Enthusiast from Kenya
