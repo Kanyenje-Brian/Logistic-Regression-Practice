@@ -2,7 +2,7 @@ name: Sync Kaggle Notebooks
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight
+    - cron: '0 0 * * 1' # Runs weekly
   workflow_dispatch:
 
 jobs:
