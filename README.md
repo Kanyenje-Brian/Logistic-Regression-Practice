@@ -51,6 +51,6 @@ This project uses the [Spaceship Titanic dataset](https://www.kaggle.com/competi
 
 ---
 
-# 🧠 Author
+## 🧠 Author
 Kanyenje Brian
 Data Analyst & Data Science Enthusiast from Kenya
